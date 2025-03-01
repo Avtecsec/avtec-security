@@ -248,10 +248,12 @@
                 });
             });
 
+            // Fallback if no videos are present or they fail to load
             setTimeout(() => {
                 loader.classList.add('hidden');
             }, 3000);
 
+            // Add smooth page transitions
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();

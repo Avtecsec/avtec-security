@@ -11,8 +11,10 @@ Compress(app)
 # Add static folder configuration
 app.static_folder = 'static'
 
-# Enable file compression
+# Enable file compression and caching
 app.config['COMPRESS_MIMETYPES'] = ['text/html', 'text/css', 'text/xml', 'application/json', 'application/javascript', 'text/javascript']
+app.config['COMPRESS_BR_LEVEL'] = 11  # Maximum compression for Brotli
+app.config['COMPRESS_ALGORITHM'] = ['br', 'gzip']  # Prefer Brotli, fallback to gzip
 
 @app.after_request
 def add_header(response):
@@ -23,7 +25,10 @@ def add_header(response):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    response = make_response(render_template('index.html'))
+    # Add preload headers for optimal video loading
+    response.headers['Link'] = '</static/videos/advanced_security_surveillance.mp4>; rel=preload; as=video'
+    return response
 
 @app.route('/about')
 def about():
@@ -48,6 +53,8 @@ def serve_video(filename):
     response = make_response(send_from_directory(video_dir, filename))
     response.headers['Content-Type'] = 'video/mp4'
     response.headers['Accept-Ranges'] = 'bytes'
+    # Add video caching headers
+    response.headers['Cache-Control'] = 'public, max-age=31536000'
     return response
 
 if __name__ == '__main__':

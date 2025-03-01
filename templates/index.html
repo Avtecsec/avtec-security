@@ -225,10 +225,45 @@
             font-size: 1.1rem;
         }
     }
+    .page-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 100; /* Ensure it's on top */
+        opacity: 1;
+        transition: opacity 0.5s ease;
+    }
+
+    .page-loader.fade-out {
+        opacity: 0;
+    }
+
+    .loader {
+        border: 16px solid #f3f3f3; /* Light grey */
+        border-top: 16px solid var(--accent-color); /* Accent color */
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
 </style>
 
 <main>
     <section class="hero-section">
+        <div class="page-loader">
+            <div class="loader"></div>
+        </div>
         <video id="heroVideo" class="hero-video" autoplay loop muted playsinline preload="metadata">
             <source src="{{ url_for('serve_video', filename='advanced_security_surveillance.mp4') }}" type="video/mp4">
             Your browser does not support the video tag.
@@ -270,6 +305,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const video = document.getElementById('heroVideo');
+    const loader = document.querySelector('.page-loader');
 
     // Function to set video speed
     function setHalfSpeed() {
@@ -282,6 +318,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Once metadata is loaded, show the video
         this.classList.add('loaded');
         setHalfSpeed();
+        loader.classList.add('fade-out');
+        setTimeout(() => {
+            loader.remove();
+        }, 500); // Remove loader after fade-out is complete
+
     });
 
     // Also set speed when video can start playing
