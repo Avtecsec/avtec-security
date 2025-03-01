@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, url_for, send_from_directory
+from flask import Flask, render_template, url_for, send_from_directory, make_response
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SESSION_SECRET")
@@ -27,7 +27,12 @@ def products():
 def contact():
     return render_template('contact.html')
 
-# Add route for serving video files
+# Add route for serving video files with caching
 @app.route('/static/videos/<path:filename>')
 def serve_video(filename):
-    return send_from_directory('static/videos', filename)
+    response = make_response(send_from_directory('static/videos', filename))
+    response.headers['Content-Type'] = 'video/mp4'
+    response.headers['Accept-Ranges'] = 'bytes'
+    # Cache for 1 hour
+    response.headers['Cache-Control'] = 'public, max-age=3600'
+    return response
