@@ -4,24 +4,54 @@
 
 {% block content %}
 <style>
+    .about-hero {
+        position: relative;
+        width: 100%;
+        height: 40vh;
+        background: url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 60px;
+    }
+
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+    }
+
+    .hero-text {
+        position: relative;
+        z-index: 2;
+        color: #fff;
+        text-align: center;
+        animation: fadeIn 1s ease forwards;
+    }
+
+    .hero-text h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+    }
+
+    .hero-text p {
+        font-size: 1.5rem;
+        opacity: 0.9;
+    }
+
     body {
         font-family: 'Poppins', sans-serif;
         margin: 0;
         padding: 0;
-        background: linear-gradient(to right, #000000, #1a1a1a);
-        color: #fff;
+        background: var(--bg-gradient, linear-gradient(to right, #000000, #1a1a1a)); /* fallback if --bg-gradient is not defined */
+        color: var(--text-primary, #fff); /* fallback if --text-primary is not defined */
         overflow-x: hidden;
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
     }
 
     .about-section {
@@ -44,7 +74,7 @@
     .mission-statement h2 {
         font-size: 2.5rem;
         margin-bottom: 30px;
-        color: #E10600;
+        color: var(--accent-color, #E10600); /* fallback if --accent-color is not defined */
         text-transform: uppercase;
         letter-spacing: 2px;
     }
@@ -53,6 +83,7 @@
         font-size: 1.2rem;
         line-height: 1.8;
         margin-bottom: 20px;
+        color: var(--text-secondary, rgba(255, 255, 255, 0.8)); /* fallback */
     }
 
     .values-grid {
@@ -65,7 +96,7 @@
     }
 
     .value-card {
-        background: rgba(255, 255, 255, 0.1);
+        background: var(--card-bg, rgba(255, 255, 255, 0.1)); /* fallback */
         padding: 30px;
         border-radius: 10px;
         text-align: center;
@@ -79,20 +110,20 @@
 
     .value-card i {
         font-size: 2.5rem;
-        color: #E10600;
+        color: var(--accent-color, #E10600); /* fallback */
         margin-bottom: 20px;
     }
 
     .value-card h3 {
         font-size: 1.5rem;
         margin-bottom: 15px;
-        color: #fff;
+        color: var(--text-primary, #fff); /* fallback */
     }
 
     .value-card p {
         font-size: 1.1rem;
         line-height: 1.6;
-        color: rgba(255, 255, 255, 0.8);
+        color: var(--text-secondary, rgba(255, 255, 255, 0.8)); /* fallback */
     }
 
     .team-section {
@@ -104,7 +135,7 @@
     .team-section h2 {
         font-size: 2.5rem;
         margin-bottom: 40px;
-        color: #E10600;
+        color: var(--accent-color, #E10600); /* fallback */
         text-transform: uppercase;
         letter-spacing: 2px;
     }
@@ -121,24 +152,39 @@
 
     .team-member i {
         font-size: 5rem;
-        color: #E10600;
+        color: var(--accent-color, #E10600); /* fallback */
         margin-bottom: 20px;
     }
 
     .team-member h3 {
         font-size: 1.8rem;
         margin-bottom: 10px;
-        color: #fff;
+        color: var(--text-primary, #fff); /* fallback */
     }
 
     .team-member p {
         font-size: 1.2rem;
-        color: rgba(255, 255, 255, 0.8);
+        color: var(--text-secondary, rgba(255, 255, 255, 0.8)); /* fallback */
+    }
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 </style>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<div class="about-hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-text">
+        <h1>About Us</h1>
+        <p>Building Trust Through Security Excellence</p>
+    </div>
+</div>
 
 <section class="about-section">
     <div class="container">
@@ -184,4 +230,6 @@
         </div>
     </div>
 </section>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 {% endblock %}
