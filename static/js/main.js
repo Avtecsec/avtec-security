@@ -1,3 +1,4 @@
+
 // Navigation Menu
 function toggleMenu() {
     const navMenu = document.getElementById("navMenu");
@@ -14,25 +15,67 @@ function toggleMenu() {
     });
 }
 
+// Close menu when clicking outside
+document.addEventListener('click', function(event) {
+    const navMenu = document.getElementById("navMenu");
+    const menuIcon = document.querySelector(".menu-icon");
+    
+    if (navMenu.classList.contains('nav-active') && 
+        !navMenu.contains(event.target) && 
+        !menuIcon.contains(event.target)) {
+        navMenu.classList.remove('nav-active');
+    }
+});
+
 // Smooth Scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+            window.scrollTo({
+                top: targetElement.offsetTop - 50,
+                behavior: 'smooth'
+            });
+            
+            // Close menu after click
+            const navMenu = document.getElementById("navMenu");
+            if (navMenu.classList.contains('nav-active')) {
+                navMenu.classList.remove('nav-active');
+            }
+        }
     });
+});
+
+// Parallax effect for hero section
+window.addEventListener('scroll', function() {
+    const scrollPosition = window.pageYOffset;
+    const heroContent = document.querySelector('.hero-content');
+    
+    if (heroContent) {
+        heroContent.style.transform = `translateY(${scrollPosition * 0.3}px)`;
+    }
 });
 
 // Intersection Observer for animations
 const observerOptions = {
-    threshold: 0.2
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('animate');
+            
+            // Add delay to child elements for staggered animation
+            const children = entry.target.querySelectorAll('.service-card, .product-card, .value-card, .team-member, .step');
+            children.forEach((child, index) => {
+                child.style.transitionDelay = `${index * 0.1}s`;
+            });
         }
     });
 }, observerOptions);
@@ -41,83 +84,87 @@ document.querySelectorAll('.animate-on-scroll').forEach((element) => {
     observer.observe(element);
 });
 
+// Service/Product Card Hover Effect
+document.querySelectorAll('.service-card, .product-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-15px)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+    });
+});
+
 // Form Validation
-function validateForm(event) {
-    event.preventDefault();
+const contactForm = document.getElementById('contactForm');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        let valid = true;
+        const name = document.getElementById('name');
+        const email = document.getElementById('email');
+        const message = document.getElementById('message');
+        
+        if (!name.value.trim()) {
+            setError(name, 'Name is required');
+            valid = false;
+        } else {
+            clearError(name);
+        }
+        
+        if (!email.value.trim()) {
+            setError(email, 'Email is required');
+            valid = false;
+        } else if (!isValidEmail(email.value)) {
+            setError(email, 'Please enter a valid email');
+            valid = false;
+        } else {
+            clearError(email);
+        }
+        
+        if (!message.value.trim()) {
+            setError(message, 'Message is required');
+            valid = false;
+        } else {
+            clearError(message);
+        }
+        
+        if (valid) {
+            // Submit form logic here
+            alert('Thank you for your message! We will contact you soon.');
+            contactForm.reset();
+        }
+    });
+}
+
+function setError(element, message) {
+    const formGroup = element.parentElement;
+    const errorDisplay = formGroup.querySelector('.error-message') || document.createElement('div');
     
-    const name = document.getElementById('name');
-    const email = document.getElementById('email');
-    const message = document.getElementById('message');
-    let isValid = true;
+    errorDisplay.className = 'error-message';
+    errorDisplay.textContent = message;
     
-    // Reset errors
-    clearErrors();
-    
-    // Validate name
-    if (!name.value.trim()) {
-        showError(name, 'Name is required');
-        isValid = false;
+    if (!formGroup.querySelector('.error-message')) {
+        formGroup.appendChild(errorDisplay);
     }
     
-    // Validate email
-    if (!isValidEmail(email.value)) {
-        showError(email, 'Please enter a valid email');
-        isValid = false;
+    element.classList.add('error-input');
+}
+
+function clearError(element) {
+    const formGroup = element.parentElement;
+    const errorDisplay = formGroup.querySelector('.error-message');
+    
+    if (errorDisplay) {
+        formGroup.removeChild(errorDisplay);
     }
     
-    // Validate message
-    if (!message.value.trim()) {
-        showError(message, 'Message is required');
-        isValid = false;
-    }
-    
-    if (isValid) {
-        // Submit form
-        submitForm();
-    }
+    element.classList.remove('error-input');
 }
 
 function isValidEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
 }
-
-function showError(input, message) {
-    const formGroup = input.closest('.form-group');
-    const error = document.createElement('div');
-    error.className = 'error-message';
-    error.textContent = message;
-    formGroup.appendChild(error);
-    input.classList.add('error');
-}
-
-function clearErrors() {
-    document.querySelectorAll('.error-message').forEach(error => error.remove());
-    document.querySelectorAll('.error').forEach(input => input.classList.remove('error'));
-}
-
-function submitForm() {
-    // Add loading state
-    const submitButton = document.querySelector('button[type="submit"]');
-    submitButton.disabled = true;
-    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-    
-    // Simulate form submission
-    setTimeout(() => {
-        submitButton.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-        document.getElementById('contactForm').reset();
-        
-        setTimeout(() => {
-            submitButton.disabled = false;
-            submitButton.innerHTML = 'Send Message';
-        }, 2000);
-    }, 1500);
-}
-
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', () => {
-    // Add form validation listener
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', validateForm);
-    }
-});
