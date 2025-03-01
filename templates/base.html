@@ -10,9 +10,10 @@
     <meta property="og:description" content="Professional security solutions for homes and businesses in Bristol. Expert installation of CCTV, access control, and alarm systems.">
     <meta property="og:type" content="website">
     <meta name="robots" content="index, follow">
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}Avtec Security{% endblock %}</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    {% block head %}{% endblock %}
     <style>
         /* Mobile-first approach */
         :root {
@@ -56,7 +57,7 @@
             position: fixed;
             top: 15px;
             right: 20px;
-            width: 35px; /* Slightly smaller for mobile */
+            width: 35px;
             height: 35px;
             display: flex;
             flex-direction: column;
@@ -64,6 +65,8 @@
             cursor: pointer;
             z-index: 1001;
             padding: 8px;
+            background: none;
+            border: none;
         }
 
         .menu-icon span {
@@ -100,6 +103,10 @@
             backdrop-filter: blur(10px);
         }
 
+        .nav-menu.nav-active {
+            top: 0;
+        }
+
         .nav-menu ul {
             list-style: none;
             padding: 0;
@@ -119,18 +126,6 @@
             display: block;
             transition: color 0.3s ease;
             padding: 8px;
-        }
-
-        /* Responsive adjustments */
-        @media (min-width: 768px) {
-            .nav-menu ul li a {
-                font-size: 1.4rem;
-            }
-
-            .menu-icon {
-                width: 40px;
-                height: 40px;
-            }
         }
 
         /* Loading and transitions */
@@ -201,7 +196,6 @@
             border: 0;
         }
     </style>
-    {% block additional_styles %}{% endblock %}
 </head>
 <body>
     <div class="page-loader">
@@ -229,20 +223,15 @@
     </main>
 
     <script>
-        // Enhanced page loading management
         document.addEventListener('DOMContentLoaded', function() {
             const loader = document.querySelector('.page-loader');
             const videos = document.querySelectorAll('video');
             let loadedVideos = 0;
 
-            // Handle video loading
             videos.forEach(video => {
-                // Add loaded class once metadata is loaded
                 video.addEventListener('loadedmetadata', function() {
                     this.classList.add('loaded');
                     loadedVideos++;
-
-                    // If all videos are loaded, hide loader
                     if (loadedVideos === videos.length) {
                         setTimeout(() => {
                             loader.classList.add('hidden');
@@ -250,7 +239,6 @@
                     }
                 });
 
-                // Fallback if video fails to load
                 video.addEventListener('error', function() {
                     console.error('Error loading video:', this.src);
                     loadedVideos++;
@@ -260,28 +248,15 @@
                 });
             });
 
-            // Fallback if no videos or loading takes too long
             setTimeout(() => {
                 loader.classList.add('hidden');
             }, 3000);
 
-            // Enhanced navigation with preloading
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const href = this.getAttribute('href');
-
-                    // Show loader before navigation
                     loader.classList.remove('hidden');
-
-                    // Preload the next page
-                    const preloadLink = document.createElement('link');
-                    preloadLink.rel = 'preload';
-                    preloadLink.as = 'document';
-                    preloadLink.href = href;
-                    document.head.appendChild(preloadLink);
-
-                    // Navigate after animation
                     setTimeout(() => {
                         window.location.href = href;
                     }, 300);
@@ -291,12 +266,9 @@
 
         function toggleMenu(icon) {
             icon.classList.toggle('active');
-            const navMenu = document.getElementById("navMenu");
-            navMenu.classList.toggle("nav-active");
-
-            // Update ARIA attributes
-            const isExpanded = navMenu.classList.contains("nav-active");
-            icon.setAttribute('aria-expanded', isExpanded);
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('nav-active');
+            icon.setAttribute('aria-expanded', navMenu.classList.contains('nav-active'));
         }
     </script>
 </body>
