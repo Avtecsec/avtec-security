@@ -274,6 +274,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to set video speed
     function setHalfSpeed() {
         video.playbackRate = 0.5; // Set to half speed
+        console.log("Setting playback rate to 0.5");
     }
 
     // Load video metadata first
@@ -310,6 +311,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add rate change listener to prevent speed changes
     video.addEventListener('ratechange', function() {
+        console.log("Playback rate changed to: " + this.playbackRate);
         if (this.playbackRate !== 0.5) {
             console.log('Rate changed, resetting to 0.5x');
             setHalfSpeed();
