@@ -1,10 +1,7 @@
 import os
 from flask import Flask, render_template
 
-app = Flask(__name__, 
-    template_folder='templates',  # Explicitly set template folder
-    static_folder='static'        # Explicitly set static folder
-)
+app = Flask(__name__)
 app.secret_key = os.environ.get("SESSION_SECRET")
 
 @app.route('/')

@@ -1,139 +1,141 @@
-{% extends "base.html" %}
-
-{% block title %}Avtec Security - Protecting What Matters{% endblock %}
-
-{% block content %}
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background: linear-gradient(to right, #000000, #1a1a1a);
-        color: #fff;
-        text-align: center;
-        overflow: hidden;
-    }
-    .menu-icon {
-        position: fixed;
-        top: 15px;
-        right: 20px;
-        width: 50px;
-        height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        border-radius: 50%;
-        z-index: 1001;
-    }
-    .menu-icon div {
-        width: 8px;
-        height: 8px;
-        background: #fff;
-        border-radius: 50%;
-        margin: 4px;
-    }
-    .nav-menu {
-        position: fixed;
-        top: 0;
-        right: -250px;
-        width: 250px;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.9);
-        padding-top: 60px;
-        transition: 0.3s;
-        z-index: 1000;
-    }
-    .nav-menu ul {
-        list-style: none;
-        padding: 0;
-        text-align: left;
-    }
-    .nav-menu ul li {
-        padding: 15px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    .nav-menu ul li a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 1.2rem;
-        display: block;
-    }
-    .nav-menu ul li a:hover {
-        color: #E10600;
-    }
-    .nav-active {
-        right: 0;
-    }
-    .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        padding: 20px;
-    }
-    .logo img {
-        width: 900px;
-        margin-bottom: 20px;
-    }
-    h1 {
-        font-size: 3rem;
-        margin-top: 20px;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
-    }
-    p {
-        font-size: 1.4rem;
-        margin: 15px 0 25px;
-        text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
-    }
-    .cta-button {
-        background: linear-gradient(45deg, #ff0000, #cc0000);
-        color: #fff;
-        padding: 18px 36px;
-        font-size: 1.4rem;
-        border: none;
-        cursor: pointer;
-        text-decoration: none;
-        border-radius: 50px;
-        transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-        box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.7);
-    }
-    .cta-button:hover {
-        background: linear-gradient(45deg, #cc0000, #990000);
-        transform: scale(1.15);
-        box-shadow: 0px 0px 30px rgba(255, 0, 0, 1);
-    }
-</style>
-
-<div class="menu-icon" onclick="toggleMenu()">
-    <div></div>
-    <div></div>
-    <div></div>
-</div>
-<nav class="nav-menu" id="navMenu">
-    <ul>
-        <li><a href="{{ url_for('index') }}">Home</a></li>
-        <li><a href="{{ url_for('about') }}">About</a></li>
-        <li><a href="{{ url_for('services') }}">Services</a></li>
-        <li><a href="{{ url_for('products') }}">Products</a></li>
-        <li><a href="{{ url_for('contact') }}">Contact</a></li>
-    </ul>
-</nav>
-<script>
-    function toggleMenu() {
-        document.getElementById("navMenu").classList.toggle("nav-active");
-    }
-</script>
-
-<div class="container">
-    <div class="logo">
-        <img src="https://www.dropbox.com/scl/fi/avegbm7algpn04hni7cvt/Avtec_Security_Logo_Transparent.png?rlkey=qpjk6iu834tpydj39n7oye8yw&raw=1" alt="Avtec Security Logo">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avtec Security - Protecting What Matters</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #000000, #1a1a1a);
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+        }
+        .menu-icon {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 1001;
+        }
+        .menu-icon div {
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            margin: 4px;
+        }
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: -250px;
+            width: 250px;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            padding-top: 60px;
+            transition: 0.3s;
+            z-index: 1000;
+        }
+        .nav-menu ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+        .nav-menu ul li {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .nav-menu ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: block;
+        }
+        .nav-menu ul li a:hover {
+            color: #E10600;
+        }
+        .nav-active {
+            right: 0;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+        }
+        .logo img {
+            width: 900px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+        }
+        p {
+            font-size: 1.4rem;
+            margin: 15px 0 25px;
+            text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
+        }
+        .cta-button {
+            background: linear-gradient(45deg, #ff0000, #cc0000);
+            color: #fff;
+            padding: 18px 36px;
+            font-size: 1.4rem;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.7);
+        }
+        .cta-button:hover {
+            background: linear-gradient(45deg, #cc0000, #990000);
+            transform: scale(1.15);
+            box-shadow: 0px 0px 30px rgba(255, 0, 0, 1);
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-icon" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
     </div>
-    <h1>Protecting What Matters Most</h1>
-    <p>Leading security solutions for homes and businesses. Reliable. Professional. Trusted.</p>
-    <a href="{{ url_for('contact') }}" class="cta-button">Get a Free Quote</a>
-</div>
-{% endblock %}
+    <nav class="nav-menu" id="navMenu">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('services') }}">Services</a></li>
+            <li><a href="{{ url_for('products') }}">Products</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        </ul>
+    </nav>
+    <script>
+        function toggleMenu() {
+            document.getElementById("navMenu").classList.toggle("nav-active");
+        }
+    </script>
+    <div class="container">
+        <div class="logo">
+            <img src="https://www.dropbox.com/scl/fi/avegbm7algpn04hni7cvt/Avtec_Security_Logo_Transparent.png?rlkey=qpjk6iu834tpydj39n7oye8yw&raw=1" alt="Avtec Security Logo">
+        </div>
+        <h1>Protecting What Matters Most</h1>
+        <p>Leading security solutions for homes and businesses. Reliable. Professional. Trusted.</p>
+        <a href="{{ url_for('contact') }}" class="cta-button">Get a Free Quote</a>
+    </div>
+</body>
+</html>
