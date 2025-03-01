@@ -46,16 +46,15 @@
     }
 
     .contact-section {
-        padding: 40px 0;
+        padding: 40px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
     .contact-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 40px;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
     }
 
     .contact-info {
@@ -98,6 +97,8 @@
         font-size: 2rem;
         color: var(--accent-color);
         margin-right: 20px;
+        min-width: 40px;
+        text-align: center;
     }
 
     .contact-item div {
@@ -152,6 +153,7 @@
         color: var(--text-primary);
         font-size: 1rem;
         transition: border-color 0.3s ease;
+        box-sizing: border-box;
     }
 
     .form-control:focus {
@@ -173,11 +175,23 @@
         font-size: 1.1rem;
         cursor: pointer;
         transition: transform 0.3s ease, background-color 0.3s ease;
+        width: 100%;
     }
 
     .submit-btn:hover {
         transform: translateY(-3px);
         background: #cc0000;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 </style>
 
@@ -233,7 +247,7 @@
                     <input type="text" class="form-control" placeholder="Subject" required>
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                    <textarea class="form-control" placeholder="Your Message" required></textarea>
                 </div>
                 <button type="submit" class="submit-btn">Send Message</button>
             </form>
