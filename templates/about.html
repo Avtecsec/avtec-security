@@ -2,18 +2,8 @@
 
 {% block title %}About Us - Avtec Security{% endblock %}
 
+{% block content %}
 <style>
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(-20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
     body {
         font-family: 'Poppins', sans-serif;
         margin: 0;
@@ -21,6 +11,17 @@
         background: linear-gradient(to right, #000000, #1a1a1a);
         color: #fff;
         overflow-x: hidden;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .about-section {
@@ -139,7 +140,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
-{% block content %}
 <section class="about-section">
     <div class="container">
         <div class="mission-statement">
