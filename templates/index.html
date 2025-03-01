@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avtec Security - Protecting What Matters</title>
     <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -76,6 +87,10 @@
             height: 100vh;
             padding: 20px;
         }
+        .logo {
+            animation: fadeIn 1.5s ease forwards;
+            opacity: 0;
+        }
         .logo img {
             width: 900px;
             margin-bottom: 20px;
@@ -86,11 +101,15 @@
             text-transform: uppercase;
             letter-spacing: 3px;
             text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+            animation: fadeIn 1.5s ease forwards 0.5s;
+            opacity: 0;
         }
         p {
             font-size: 1.4rem;
             margin: 15px 0 25px;
             text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
+            animation: fadeIn 1.5s ease forwards 1s;
+            opacity: 0;
         }
         .cta-button {
             background: linear-gradient(45deg, #ff0000, #cc0000);
@@ -103,6 +122,8 @@
             border-radius: 50px;
             transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.7);
+            animation: fadeIn 1.5s ease forwards 1.5s;
+            opacity: 0;
         }
         .cta-button:hover {
             background: linear-gradient(45deg, #cc0000, #990000);
