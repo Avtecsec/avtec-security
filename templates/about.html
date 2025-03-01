@@ -1,76 +1,50 @@
+{% extends "base.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Avtec Security</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
-</head>
-<body>
-    <div class="menu-icon" onclick="toggleMenu()">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
+{% block title %}About Us - Avtec Security{% endblock %}
 
-    <nav class="nav-menu" id="navMenu">
-        <ul>
-            <li><a href="{{ url_for('index') }}">Home</a></li>
-            <li><a href="{{ url_for('about') }}">About</a></li>
-            <li><a href="{{ url_for('services') }}">Services</a></li>
-            <li><a href="{{ url_for('products') }}">Products</a></li>
-            <li><a href="{{ url_for('contact') }}">Contact</a></li>
-        </ul>
-    </nav>
+{% block content %}
+<section class="about-section">
+    <div class="container">
+        <div class="mission-statement animate-on-scroll">
+            <h2>Our Mission</h2>
+            <p>Avtec Security has over <strong>24 years of experience</strong> in the security industry, providing cutting-edge solutions for residential and commercial properties. Based in <strong>Bristol</strong>, we specialize in security installations ranging from small domestic setups to large multi-site integrated systems.</p>
+            <p>Our extensive expertise covers everything from traditional analog security systems to the latest in <strong>networked cloud-based solutions</strong>. We continually adapt to the ever-changing landscape of electronic security, ensuring our clients receive the most advanced and effective security solutions available.</p>
+            <p>At Avtec Security, we are committed to offering professional, reliable, and tailored security services that meet the unique needs of every client.</p>
+        </div>
 
-    <section class="about-section">
-        <div class="container">
-            <div class="mission-statement animate-on-scroll">
-                <h2>Our Mission</h2>
-                <p>Avtec Security has over <strong>24 years of experience</strong> in the security industry, providing cutting-edge solutions for residential and commercial properties. Based in <strong>Bristol</strong>, we specialize in security installations ranging from small domestic setups to large multi-site integrated systems.</p>
-                <p>Our extensive expertise covers everything from traditional analog security systems to the latest in <strong>networked cloud-based solutions</strong>. We continually adapt to the ever-changing landscape of electronic security, ensuring our clients receive the most advanced and effective security solutions available.</p>
-                <p>At Avtec Security, we are committed to offering professional, reliable, and tailored security services that meet the unique needs of every client.</p>
+        <div class="values-grid animate-on-scroll">
+            <div class="value-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Local Bristol Based</h3>
+                <p>Rooted in the community, ensuring personalized service and quick response times.</p>
             </div>
-
-            <div class="values-grid animate-on-scroll">
-                <div class="value-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Local Bristol Based</h3>
-                    <p>Rooted in the community, ensuring personalized service and quick response times.</p>
-                </div>
-                <div class="value-card">
-                    <i class="fas fa-medal"></i>
-                    <h3>24+ Years Experience</h3>
-                    <p>Expert knowledge in both residential and commercial security systems.</p>
-                </div>
-                <div class="value-card">
-                    <i class="fas fa-lightbulb"></i>
-                    <h3>Cutting-Edge Tech</h3>
-                    <p>From analog setups to modern, cloud-based solutions, we stay ahead of the curve.</p>
-                </div>
-                <div class="value-card">
-                    <i class="fas fa-star"></i>
-                    <h3>Reliable & Professional</h3>
-                    <p>A trusted partner for countless businesses and homeowners, delivering on our promises.</p>
-                </div>
+            <div class="value-card">
+                <i class="fas fa-medal"></i>
+                <h3>24+ Years Experience</h3>
+                <p>Expert knowledge in both residential and commercial security systems.</p>
             </div>
+            <div class="value-card">
+                <i class="fas fa-lightbulb"></i>
+                <h3>Cutting-Edge Tech</h3>
+                <p>From analog setups to modern, cloud-based solutions, we stay ahead of the curve.</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-star"></i>
+                <h3>Reliable & Professional</h3>
+                <p>A trusted partner for countless businesses and homeowners, delivering on our promises.</p>
+            </div>
+        </div>
 
-            <div class="team-section animate-on-scroll">
-                <h2>Leadership</h2>
-                <div class="team-grid">
-                    <div class="team-member">
-                        <i class="fas fa-user-circle"></i>
-                        <h3>Craig George</h3>
-                        <p>Owner</p>
-                    </div>
+        <div class="team-section animate-on-scroll">
+            <h2>Leadership</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <i class="fas fa-user-circle"></i>
+                    <h3>Craig George</h3>
+                    <p>Owner</p>
                 </div>
             </div>
         </div>
-    </section>
-
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-</body>
-</html>
+    </div>
+</section>
+{% endblock %}
