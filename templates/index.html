@@ -257,6 +257,66 @@
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
     }
+
+    .share-container {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        z-index: 10;
+        display: flex;
+        gap: 10px;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+        border-radius: 30px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.3s ease;
+    }
+
+    .hero-section:hover .share-container {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .share-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: none;
+        background: var(--accent-color);
+        color: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .share-btn:hover {
+        transform: translateY(-3px);
+        background: #cc0000;
+    }
+
+    .share-tooltip {
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 0.8rem;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        white-space: nowrap;
+        margin-bottom: 5px;
+    }
+
+    .share-btn:hover .share-tooltip {
+        opacity: 1;
+    }
 </style>
 
 <main>
@@ -280,6 +340,28 @@
                 <a href="{{ url_for('contact') }}" class="cta-button primary-cta">Get a Free Quote</a>
                 <a href="{{ url_for('services') }}" class="cta-button secondary-cta">Our Services</a>
             </div>
+        </div>
+        <div class="share-container">
+            <button class="share-btn" onclick="shareVideo('facebook', 'advanced_security_surveillance.mp4')" aria-label="Share on Facebook">
+                <i class="fab fa-facebook-f"></i>
+                <span class="share-tooltip">Share on Facebook</span>
+            </button>
+            <button class="share-btn" onclick="shareVideo('twitter', 'advanced_security_surveillance.mp4')" aria-label="Share on Twitter">
+                <i class="fab fa-twitter"></i>
+                <span class="share-tooltip">Share on Twitter</span>
+            </button>
+            <button class="share-btn" onclick="shareVideo('linkedin', 'advanced_security_surveillance.mp4')" aria-label="Share on LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+                <span class="share-tooltip">Share on LinkedIn</span>
+            </button>
+            <button class="share-btn" onclick="shareVideo('whatsapp', 'advanced_security_surveillance.mp4')" aria-label="Share on WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+                <span class="share-tooltip">Share on WhatsApp</span>
+            </button>
+            <button class="share-btn" onclick="copyDirectLink('advanced_security_surveillance.mp4')" aria-label="Copy direct link">
+                <i class="fas fa-link"></i>
+                <span class="share-tooltip">Copy direct link</span>
+            </button>
         </div>
     </section>
 
@@ -359,5 +441,34 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+async function shareVideo(platform, filename) {
+    try {
+        const response = await fetch(`/share/${filename}`);
+        const shareLinks = await response.json();
+        window.open(shareLinks[platform], '_blank');
+    } catch (error) {
+        console.error('Error sharing video:', error);
+    }
+}
+
+async function copyDirectLink(filename) {
+    try {
+        const response = await fetch(`/share/${filename}`);
+        const shareLinks = await response.json();
+        await navigator.clipboard.writeText(shareLinks.direct);
+
+        const btn = event.target.closest('.share-btn');
+        const tooltip = btn.querySelector('.share-tooltip');
+        const originalText = tooltip.textContent;
+
+        tooltip.textContent = 'Link copied!';
+        setTimeout(() => {
+            tooltip.textContent = originalText;
+        }, 2000);
+    } catch (error) {
+        console.error('Error copying link:', error);
+    }
+}
 </script>
 {% endblock %}

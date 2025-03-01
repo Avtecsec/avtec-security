@@ -1,6 +1,7 @@
 import os
-from flask import Flask, render_template, url_for, send_from_directory, make_response
+from flask import Flask, render_template, url_for, send_from_directory, make_response, jsonify, request
 from flask_compress import Compress
+from urllib.parse import quote
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SESSION_SECRET")
@@ -45,6 +46,23 @@ def products():
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
+
+# New route for generating shareable video links
+@app.route('/share/<path:filename>')
+def share_video(filename):
+    video_url = url_for('serve_video', filename=filename, _external=True)
+    title = "Avtec Security - Professional Security Solutions"
+    description = "Experience cutting-edge security solutions from Avtec Security"
+
+    share_links = {
+        'facebook': f"https://www.facebook.com/sharer/sharer.php?u={quote(video_url)}",
+        'twitter': f"https://twitter.com/intent/tweet?url={quote(video_url)}&text={quote(title)}",
+        'linkedin': f"https://www.linkedin.com/sharing/share-offsite/?url={quote(video_url)}",
+        'whatsapp': f"https://wa.me/?text={quote(f'{title} - {video_url}')}",
+        'direct': video_url
+    }
+
+    return jsonify(share_links)
 
 # Updated video serving route with proper mime type and byte range support
 @app.route('/static/videos/<path:filename>')
