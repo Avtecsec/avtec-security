@@ -3,8 +3,144 @@
 {% block title %}Contact Us - Avtec Security{% endblock %}
 
 {% block content %}
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<style>
+    .page-header {
+        padding: 60px 0;
+        background: var(--card-bg);
+        margin-bottom: 40px;
+    }
+
+    .page-header h1 {
+        font-size: 3rem;
+        color: var(--text-primary);
+        animation: fadeIn 1s ease forwards;
+        opacity: 0;
+    }
+
+    .contact-section {
+        padding: 40px 0;
+    }
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .contact-info {
+        text-align: left;
+        animation: fadeIn 1s ease forwards 0.3s;
+        opacity: 0;
+    }
+
+    .contact-info h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: var(--accent-color);
+    }
+
+    .contact-info p {
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin-bottom: 30px;
+    }
+
+    .contact-details {
+        margin-top: 30px;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 15px;
+        background: var(--card-bg);
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+    }
+
+    .contact-item:hover {
+        transform: translateY(-5px);
+    }
+
+    .contact-item i {
+        font-size: 2rem;
+        color: var(--accent-color);
+        margin-right: 20px;
+    }
+
+    .contact-item h3 {
+        margin: 0;
+        color: var(--text-primary);
+    }
+
+    .contact-item p {
+        margin: 5px 0 0;
+    }
+
+    .contact-link {
+        color: var(--accent-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .contact-link:hover {
+        color: var(--text-primary);
+    }
+
+    .contact-form {
+        background: var(--card-bg);
+        padding: 40px;
+        border-radius: 15px;
+        animation: fadeIn 1s ease forwards 0.6s;
+        opacity: 0;
+    }
+
+    .contact-form h2 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+        color: var(--accent-color);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: var(--accent-color);
+    }
+
+    .submit-btn {
+        background: var(--accent-color);
+        color: #fff;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .submit-btn:hover {
+        transform: translateY(-3px);
+        background: #cc0000;
+    }
+</style>
 
 <section class="page-header">
     <div class="container">
