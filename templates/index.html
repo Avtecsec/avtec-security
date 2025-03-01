@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Avtec Security - Protecting What Matters{% endblock %}
+{% block title %}Avtec Security - Professional Security Solutions{% endblock %}
 
 {% block content %}
 <style>
@@ -15,7 +15,7 @@
         overflow: hidden;
         padding: 20px;
         width: 100%;
-        margin-bottom: 60px; /* Add space for content below */
+        margin-bottom: 60px;
     }
 
     .hero-video {
@@ -36,6 +36,7 @@
     .hero-video.loaded {
         opacity: 1;
     }
+
     .background-effect {
         position: absolute;
         top: 0;
@@ -52,17 +53,21 @@
         text-align: center;
         max-width: 1200px;
         width: 100%;
+        padding: 0 20px;
     }
 
     .logo-container {
         margin-bottom: 40px;
         animation: fadeInDown 1.5s ease forwards;
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto 40px;
     }
 
     .logo-container img {
         width: 100%;
-        max-width: 900px;
         height: auto;
+        max-width: 100%;
     }
 
     .hero-text {
@@ -71,20 +76,13 @@
         opacity: 0;
     }
 
-    .hero-text h1 {
-        font-size: clamp(2.5rem, 5vw, 4rem);
-        margin-bottom: 20px;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        text-shadow: 0px 0px 10px rgba(225, 6, 0, 0.3);
-    }
-
     .hero-text p {
-        font-size: clamp(1.2rem, 2vw, 1.6rem);
-        margin-bottom: 30px;
+        font-size: clamp(1.1rem, 2vw, 1.6rem);
+        line-height: 1.6;
         color: var(--text-secondary);
         max-width: 800px;
         margin: 0 auto;
+        padding: 0 20px;
     }
 
     .cta-section {
@@ -94,16 +92,20 @@
         margin-top: 40px;
         animation: fadeIn 1.5s ease forwards 1s;
         opacity: 0;
+        flex-wrap: wrap;
+        padding: 0 20px;
     }
 
     .cta-button {
-        padding: 18px 36px;
-        font-size: 1.2rem;
+        padding: clamp(15px, 2vw, 18px) clamp(25px, 3vw, 36px);
+        font-size: clamp(1rem, 1.5vw, 1.2rem);
         text-decoration: none;
         border-radius: 50px;
         transition: all 0.3s ease;
         text-transform: uppercase;
         letter-spacing: 1px;
+        min-width: 200px;
+        text-align: center;
     }
 
     .primary-cta {
@@ -130,10 +132,12 @@
 
     .feature-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 30px;
         margin-top: 60px;
         padding: 0 20px;
+        max-width: 1200px;
+        margin: 60px auto 0;
         animation: fadeIn 1.5s ease forwards 1.5s;
         opacity: 0;
     }
@@ -151,19 +155,19 @@
     }
 
     .feature-card i {
-        font-size: 2.5rem;
+        font-size: clamp(2rem, 3vw, 2.5rem);
         color: var(--accent-color);
         margin-bottom: 20px;
     }
 
     .feature-card h3 {
-        font-size: 1.4rem;
+        font-size: clamp(1.2rem, 2vw, 1.4rem);
         margin-bottom: 15px;
         color: var(--text-primary);
     }
 
     .feature-card p {
-        font-size: 1rem;
+        font-size: clamp(0.9rem, 1.5vw, 1rem);
         color: var(--text-secondary);
         line-height: 1.6;
     }
@@ -189,25 +193,33 @@
     }
 
     @media (max-width: 768px) {
+        .hero-section {
+            min-height: 500px;
+        }
+
         .cta-section {
             flex-direction: column;
-            padding: 0 20px;
+            align-items: stretch;
         }
 
         .cta-button {
             width: 100%;
-            text-align: center;
         }
 
         .feature-grid {
+            grid-template-columns: 1fr;
             margin-top: 40px;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
         }
     }
 </style>
 
 <main>
     <section class="hero-section">
-        <video id="heroVideo" class="hero-video" autoplay loop muted playsinline>
+        <video id="heroVideo" class="hero-video" autoplay loop muted playsinline preload="metadata">
             <source src="{{ url_for('serve_video', filename='advanced_security_surveillance.mp4') }}" type="video/mp4">
             Your browser does not support the video tag.
         </video>
@@ -265,13 +277,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // If video starts playing, ensure speed is set
     video.addEventListener('play', setHalfSpeed);
-
-    // Error handling
-    video.addEventListener('error', function(e) {
-        console.error('Error loading video:', e);
-        // Add a fallback background if video fails
-        document.querySelector('.hero-section').style.background = 'linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(26,26,26,0.95) 100%)';
-    });
 
     // Start playing when in view
     video.play().catch(function(error) {
