@@ -19,11 +19,26 @@
             color: #fff;
             text-align: center;
             overflow-x: hidden;
+        }
+        .navbar {
+            width: 100%;
+            background: #111;
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            font-size: 1.2rem;
+        }
+        .navbar a:hover {
+            background: #333;
+            border-radius: 5px;
         }
         .container {
             max-width: 900px;
@@ -31,6 +46,8 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            margin-top: 80px;
+            padding: 20px;
         }
         .logo img {
             max-width: 100%;
@@ -72,23 +89,6 @@
             transform: scale(1.1);
             box-shadow: 0px 0px 30px rgba(255, 0, 0, 1);
         }
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        @keyframes bounceIn {
-            0% { transform: scale(0.8); opacity: 0; }
-            50% { transform: scale(1.05); opacity: 1; }
-            100% { transform: scale(1); }
-        }
         @media (max-width: 768px) {
             h1 {
                 font-size: 2rem;
@@ -104,13 +104,18 @@
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </div>
     <div class="container">
         <div class="logo">
             <img src="https://www.dropbox.com/scl/fi/avegbm7algpn04hni7cvt/Avtec_Security_Logo_Transparent.png?rlkey=qpjk6iu834tpydj39n7oye8yw&raw=1" alt="Avtec Security Logo">
         </div>
         <h1>Protecting What Matters Most</h1>
         <p>Leading security solutions for homes and businesses. Reliable. Professional. Trusted.</p>
-        <a href="#contact" class="cta-button">Get a Free Quote</a>
+        <a href="mailto:craig@avtecsecurity.com?subject=Quote%20Request" class="cta-button">Get a Free Quote</a>
     </div>
 </body>
 </html>
