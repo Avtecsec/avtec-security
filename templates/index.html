@@ -6,6 +6,7 @@
 <style>
     .hero-section {
         height: 100vh;
+        min-height: 600px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -14,6 +15,7 @@
         overflow: hidden;
         padding: 20px;
         width: 100%;
+        margin-bottom: 60px; /* Add space for content below */
     }
 
     .hero-video {
@@ -203,43 +205,46 @@
     }
 </style>
 
-<section class="hero-section">
-    <video id="heroVideo" class="hero-video" autoplay loop muted playsinline>
-        <source src="{{ url_for('static', filename='videos/dynamic_digital_defense.mp4') }}" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <div class="background-effect"></div>
-    <div class="content-wrapper">
-        <div class="logo-container">
-            <img src="https://www.dropbox.com/scl/fi/avegbm7algpn04hni7cvt/Avtec_Security_Logo_Transparent.png?rlkey=qpjk6iu834tpydj39n7oye8yw&raw=1" alt="Avtec Security Logo">
-        </div>
-        <div class="hero-text">
-            <h1>Protecting What Matters Most</h1>
-            <p>Leading security solutions for homes and businesses across Bristol. With over 24 years of experience, we deliver reliable, professional, and trusted security systems.</p>
-        </div>
-        <div class="cta-section">
-            <a href="{{ url_for('contact') }}" class="cta-button primary-cta">Get a Free Quote</a>
-            <a href="{{ url_for('services') }}" class="cta-button secondary-cta">Our Services</a>
-        </div>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <i class="fas fa-shield-alt"></i>
-                <h3>Expert Protection</h3>
-                <p>State-of-the-art security systems tailored to your needs</p>
+<main>
+    <section class="hero-section">
+        <video id="heroVideo" class="hero-video" autoplay loop muted playsinline>
+            <source src="{{ url_for('static', filename='videos/dynamic_digital_defense.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="background-effect"></div>
+        <div class="content-wrapper">
+            <div class="logo-container">
+                <img src="https://www.dropbox.com/scl/fi/avegbm7algpn04hni7cvt/Avtec_Security_Logo_Transparent.png?rlkey=qpjk6iu834tpydj39n7oye8yw&raw=1" alt="Avtec Security Logo">
             </div>
-            <div class="feature-card">
-                <i class="fas fa-clock"></i>
-                <h3>24+ Years Experience</h3>
-                <p>Decades of trusted service in the security industry</p>
+            <div class="hero-text">
+                <h1>Protecting What Matters Most</h1>
+                <p>Leading security solutions for homes and businesses across Bristol. With over 24 years of experience, we deliver reliable, professional, and trusted security systems.</p>
             </div>
-            <div class="feature-card">
-                <i class="fas fa-map-marker-alt"></i>
-                <h3>Local Service</h3>
-                <p>Bristol-based team providing rapid response times</p>
+            <div class="cta-section">
+                <a href="{{ url_for('contact') }}" class="cta-button primary-cta">Get a Free Quote</a>
+                <a href="{{ url_for('services') }}" class="cta-button secondary-cta">Our Services</a>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+    <section class="feature-grid">
+        <div class="feature-card">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Expert Protection</h3>
+            <p>State-of-the-art security systems tailored to your needs</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-clock"></i>
+            <h3>24+ Years Experience</h3>
+            <p>Decades of trusted service in the security industry</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-map-marker-alt"></i>
+            <h3>Local Service</h3>
+            <p>Bristol-based team providing rapid response times</p>
+        </div>
+    </section>
+</main>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -263,4 +268,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+
 {% endblock %}
