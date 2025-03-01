@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Avtec Security for inquiries, quotes, and support. Get in touch with us today.">
+    <title>Contact Us - Avtec Security</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    <div class="container">
+        <h1>Contact Us</h1>
+        <p>Email: <a href="mailto:craig@avtecsecurity.com">craig@avtecsecurity.com</a></p>
+        <p>Phone: (123) 456-7890</p>
+        <p>Address: 123 Security Street, Safe City, USA</p>
+    </div>
+</body>
+</html>
