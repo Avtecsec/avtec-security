@@ -43,13 +43,14 @@
         position: relative;
         z-index: 2;
         text-align: center;
+        color: #fff;
+        padding: 0 20px;
         animation: fadeIn 1s ease forwards;
         opacity: 0;
     }
 
     .hero-content h1 {
         font-size: 3.5rem;
-        color: #fff;
         margin-bottom: 20px;
         text-transform: uppercase;
         letter-spacing: 3px;
@@ -57,7 +58,7 @@
 
     .hero-content p {
         font-size: 1.5rem;
-        color: rgba(255, 255, 255, 0.9);
+        opacity: 0.9;
     }
 
     .services-grid {
@@ -178,12 +179,15 @@
             gap: 30px;
         }
     }
+
     @keyframes fadeIn {
         from {
             opacity: 0;
+            transform: translateY(20px);
         }
         to {
             opacity: 1;
+            transform: translateY(0);
         }
     }
 </style>
@@ -289,4 +293,19 @@
         </div>
     </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.querySelector('.hero-video');
+
+    video.addEventListener('loadedmetadata', function() {
+        video.classList.add('loaded');
+    });
+
+    video.addEventListener('error', function(e) {
+        console.error('Error loading video:', e);
+        document.querySelector('.hero').style.background = 'linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(26,26,26,0.95) 100%)';
+    });
+});
+</script>
 {% endblock %}
