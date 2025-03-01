@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // When metadata is loaded, add the loaded class
     video.addEventListener('loadedmetadata', function() {
-        video.classList.add('loaded');
+        this.classList.add('loaded');
         setHalfSpeed();
     });
 
@@ -287,12 +287,23 @@ document.addEventListener('DOMContentLoaded', function() {
     let checkCount = 0;
     const speedCheck = setInterval(() => {
         if (checkCount < 5) {
-            setHalfSpeed();
+            if (video.playbackRate !== 0.5) {
+                console.log('Forcing video speed to 0.5x');
+                setHalfSpeed();
+            }
             checkCount++;
         } else {
             clearInterval(speedCheck);
         }
     }, 1000);
+
+    // Add rate change listener to prevent speed changes
+    video.addEventListener('ratechange', function() {
+        if (this.playbackRate !== 0.5) {
+            console.log('Rate changed, resetting to 0.5x');
+            setHalfSpeed();
+        }
+    });
 });
 </script>
 {% endblock %}
