@@ -249,11 +249,22 @@
 document.addEventListener('DOMContentLoaded', function() {
     const video = document.getElementById('heroVideo');
 
-    // When metadata is loaded, add the loaded class and set playback rate
+    // Function to set video speed
+    function setHalfSpeed() {
+        video.playbackRate = 0.5; // Set to half speed
+    }
+
+    // When metadata is loaded, add the loaded class
     video.addEventListener('loadedmetadata', function() {
         video.classList.add('loaded');
-        video.playbackRate = 0.5; // Set to half speed
+        setHalfSpeed();
     });
+
+    // Also set speed when video can start playing
+    video.addEventListener('canplay', setHalfSpeed);
+
+    // If video starts playing, ensure speed is set
+    video.addEventListener('play', setHalfSpeed);
 
     // Error handling
     video.addEventListener('error', function(e) {
@@ -266,6 +277,17 @@ document.addEventListener('DOMContentLoaded', function() {
     video.play().catch(function(error) {
         console.log("Video autoplay failed:", error);
     });
+
+    // Double check the speed setting every second for the first few seconds
+    let checkCount = 0;
+    const speedCheck = setInterval(() => {
+        if (checkCount < 5) {
+            setHalfSpeed();
+            checkCount++;
+        } else {
+            clearInterval(speedCheck);
+        }
+    }, 1000);
 });
 </script>
 {% endblock %}
