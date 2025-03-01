@@ -15,6 +15,29 @@ body {
     line-height: 1.6;
 }
 
+/* Logo Animation */
+@keyframes logoFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo {
+    opacity: 0;
+    animation: logoFadeIn 1.2s ease-out forwards;
+}
+
+.logo img {
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 20px;
+}
+
 /* Navigation */
 .menu-icon {
     position: fixed;
