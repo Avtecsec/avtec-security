@@ -201,8 +201,8 @@
 </style>
 
 <section class="hero-section">
-    <video class="hero-video" autoplay loop muted playsinline preload="metadata">
-        <source src="{{ url_for('serve_video', filename='dynamic_digital_defense.mp4') }}" type="video/mp4">
+    <video id="heroVideo" class="hero-video" autoplay loop muted playsinline>
+        <source src="{{ url_for('static', filename='videos/dynamic_digital_defense.mp4') }}" type="video/mp4">
         Your browser does not support the video tag.
     </video>
     <div class="background-effect"></div>
@@ -237,4 +237,27 @@
         </div>
     </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('heroVideo');
+
+    // When metadata is loaded, add the loaded class
+    video.addEventListener('loadedmetadata', function() {
+        video.classList.add('loaded');
+    });
+
+    // Error handling
+    video.addEventListener('error', function(e) {
+        console.error('Error loading video:', e);
+        // Add a fallback background if video fails
+        document.querySelector('.hero-section').style.background = 'linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(26,26,26,0.95) 100%)';
+    });
+
+    // Start playing when in view
+    video.play().catch(function(error) {
+        console.log("Video autoplay failed:", error);
+    });
+});
+</script>
 {% endblock %}
