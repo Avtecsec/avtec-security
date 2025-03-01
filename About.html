@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Avtec Security</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #000000, #1a1a1a);
+            color: #fff;
+            overflow-x: hidden;
+        }
+        /* Menu Icon */
+        .menu-icon {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 1001;
+        }
+        .menu-icon div {
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            margin: 4px;
+        }
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: -250px;
+            width: 250px;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            padding-top: 60px;
+            transition: 0.3s;
+            z-index: 1000;
+        }
+        .nav-menu ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+        .nav-menu ul li {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .nav-menu ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: block;
+        }
+        .nav-menu ul li a:hover {
+            color: #E10600;
+        }
+        .nav-active {
+            right: 0;
+        }
+        /* Hero Section */
+        .about-hero {
+            position: relative;
+            width: 100%;
+            height: 40vh;
+            background: url('https://images.unsplash.com/photo-1579684285851-241c2f82f0f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+        }
+        .about-hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+        .hero-text {
+            position: relative;
+            z-index: 2;
+            font-size: 2.5rem;
+            color: #fff;
+            text-transform: uppercase;
+            animation: fadeInDown 1.5s ease forwards;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            letter-spacing: 2px;
+        }
+        /* About Container */
+        .about-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+            animation: fadeIn 1.5s ease;
+        }
+        h1 {
+            color: #E10600;
+            font-size: 3rem;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .about-content {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        .key-points .point {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex: 1 1 250px;
+            max-width: 300px;
+        }
+        .key-points .point:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.4);
+        }
+        .key-points .point h2 {
+            color: #E10600;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .key-points .point p {
+            font-size: 1rem;
+            color: #ddd;
+            line-height: 1.5;
+        }
+        /* Keyframes */
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-icon" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <nav class="nav-menu" id="navMenu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <script>
+        function toggleMenu() {
+            document.getElementById("navMenu").classList.toggle("nav-active");
+        }
+    </script>
+
+    <!-- Hero Section -->
+    <div class="about-hero">
+        <div class="hero-text">About Avtec Security</div>
+    </div>
+
+    <div class="about-container">
+        <h1>Who We Are</h1>
+        <p class="about-content">Avtec Security has over <strong>24 years of experience</strong> in the security industry, providing cutting-edge solutions for residential and commercial properties. Based in <strong>Bristol</strong>, we specialize in security installations ranging from small domestic setups to large multi-site integrated systems.</p>
+        <p class="about-content">Our extensive expertise covers everything from traditional analog security systems to the latest in <strong>networked cloud-based solutions</strong>. We continually adapt to the ever-changing landscape of electronic security, ensuring our clients receive the most advanced and effective security solutions available.</p>
+        <p class="about-content">At Avtec Security, we are committed to offering professional, reliable, and tailored security services that meet the unique needs of every client.</p>
+
+        <div class="key-points">
+            <div class="point">
+                <h2>Local Bristol Based</h2>
+                <p>Rooted in the community, ensuring personalized service and quick response times.</p>
+            </div>
+            <div class="point">
+                <h2>24+ Years Experience</h2>
+                <p>Expert knowledge in both residential and commercial security systems.</p>
+            </div>
+            <div class="point">
+                <h2>Cutting-Edge Tech</h2>
+                <p>From analog setups to modern, cloud-based solutions, we stay ahead of the curve.</p>
+            </div>
+            <div class="point">
+                <h2>Reliable & Professional</h2>
+                <p>A trusted partner for countless businesses and homeowners, delivering on our promises.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
