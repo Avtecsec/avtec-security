@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Security Solutions{% endblock %}</title>
+    <meta name="description" content="Avtec Security - Professional security solutions for homes and businesses in Bristol. Expert installation of CCTV, access control, and alarm systems.">
+    <meta name="keywords" content="security systems, CCTV installation, access control, alarm systems, Bristol security, commercial security, residential security">
+    <meta name="author" content="Avtec Security">
+    <meta property="og:title" content="Avtec Security - Professional Security Solutions">
+    <meta property="og:description" content="Professional security solutions for homes and businesses in Bristol. Expert installation of CCTV, access control, and alarm systems.">
+    <meta property="og:type" content="website">
+    <meta name="robots" content="index, follow">
+    <title>{% block title %}{% endblock %}</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* Existing styles */
+        /* Mobile-first approach */
         :root {
             --bg-primary: #1a1a1a;
             --bg-gradient: linear-gradient(to right, #000000, #1a1a1a);
@@ -32,67 +39,7 @@
             }
         }
 
-        /* Loading Animation Styles */
-        .page-loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-gradient);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            opacity: 1;
-            visibility: visible;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-
-        .page-loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader {
-            width: 60px;
-            height: 60px;
-            border: 4px solid var(--text-secondary);
-            border-radius: 50%;
-            border-top-color: var(--accent-color);
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Video Loading Optimization */
-        .hero-video {
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .hero-video.loaded {
-            opacity: 1;
-        }
-
-        /* Page Transition Animations */
-        .page-content {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
+        /* Mobile-first base styles */
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -101,21 +48,22 @@
             color: var(--text-primary);
             text-align: center;
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
+        /* Enhanced mobile menu styles */
         .menu-icon {
             position: fixed;
             top: 15px;
             right: 20px;
-            width: 40px;
-            height: 40px;
+            width: 35px; /* Slightly smaller for mobile */
+            height: 35px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             cursor: pointer;
             z-index: 1001;
-            padding: 10px;
-            transition: all 0.3s ease;
+            padding: 8px;
         }
 
         .menu-icon span {
@@ -140,21 +88,18 @@
             transform: translateY(-8px) rotate(-45deg);
         }
 
-        .menu-icon:hover span {
-            background: var(--accent-color);
-        }
-
         .nav-menu {
             position: fixed;
             top: -100%;
             left: 0;
             width: 100%;
             background: var(--nav-bg);
-            padding: 80px 0 40px;
+            padding: 70px 0 40px;
             transition: top 0.4s ease-in-out;
             z-index: 1000;
             backdrop-filter: blur(10px);
         }
+
         .nav-menu ul {
             list-style: none;
             padding: 0;
@@ -163,24 +108,97 @@
         }
 
         .nav-menu ul li {
-            padding: 15px;
+            padding: 12px;
             border-bottom: 1px solid var(--border-color);
         }
 
         .nav-menu ul li a {
             color: var(--text-primary);
             text-decoration: none;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             display: block;
             transition: color 0.3s ease;
+            padding: 8px;
         }
 
-        .nav-menu ul li a:hover {
-            color: var(--accent-color);
+        /* Responsive adjustments */
+        @media (min-width: 768px) {
+            .nav-menu ul li a {
+                font-size: 1.4rem;
+            }
+
+            .menu-icon {
+                width: 40px;
+                height: 40px;
+            }
         }
 
-        .nav-active {
+        /* Loading and transitions */
+        .page-loader {
+            position: fixed;
             top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-gradient);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .page-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--text-secondary);
+            border-radius: 50%;
+            border-top-color: var(--accent-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Content container responsiveness */
+        .page-content {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        @media (min-width: 1200px) {
+            .page-content {
+                max-width: 1200px;
+            }
+        }
+
+        /* Improved accessibility */
+        a:focus, button:focus {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
         }
     </style>
     {% block additional_styles %}{% endblock %}
@@ -190,13 +208,13 @@
         <div class="loader"></div>
     </div>
 
-    <div class="menu-icon" onclick="toggleMenu(this)">
+    <button class="menu-icon" onclick="toggleMenu(this)" aria-label="Toggle navigation menu">
         <span></span>
         <span></span>
         <span></span>
-    </div>
+    </button>
 
-    <nav class="nav-menu" id="navMenu">
+    <nav class="nav-menu" id="navMenu" role="navigation" aria-label="Main navigation">
         <ul>
             <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
             <li><a href="{{ url_for('about') }}" class="nav-link">About</a></li>
@@ -206,7 +224,7 @@
         </ul>
     </nav>
 
-    <main class="page-content">
+    <main class="page-content" role="main">
         {% block content %}{% endblock %}
     </main>
 
@@ -234,6 +252,7 @@
 
                 // Fallback if video fails to load
                 video.addEventListener('error', function() {
+                    console.error('Error loading video:', this.src);
                     loadedVideos++;
                     if (loadedVideos === videos.length) {
                         loader.classList.add('hidden');
@@ -246,7 +265,7 @@
                 loader.classList.add('hidden');
             }, 3000);
 
-            // Handle navigation
+            // Enhanced navigation with preloading
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -254,6 +273,13 @@
 
                     // Show loader before navigation
                     loader.classList.remove('hidden');
+
+                    // Preload the next page
+                    const preloadLink = document.createElement('link');
+                    preloadLink.rel = 'preload';
+                    preloadLink.as = 'document';
+                    preloadLink.href = href;
+                    document.head.appendChild(preloadLink);
 
                     // Navigate after animation
                     setTimeout(() => {
@@ -265,7 +291,12 @@
 
         function toggleMenu(icon) {
             icon.classList.toggle('active');
-            document.getElementById("navMenu").classList.toggle("nav-active");
+            const navMenu = document.getElementById("navMenu");
+            navMenu.classList.toggle("nav-active");
+
+            // Update ARIA attributes
+            const isExpanded = navMenu.classList.contains("nav-active");
+            icon.setAttribute('aria-expanded', isExpanded);
         }
     </script>
 </body>

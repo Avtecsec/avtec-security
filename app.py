@@ -1,11 +1,25 @@
 import os
 from flask import Flask, render_template, url_for, send_from_directory, make_response
+from flask_compress import Compress
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SESSION_SECRET")
 
+# Enable Flask-Compress
+Compress(app)
+
 # Add static folder configuration
 app.static_folder = 'static'
+
+# Enable file compression
+app.config['COMPRESS_MIMETYPES'] = ['text/html', 'text/css', 'text/xml', 'application/json', 'application/javascript', 'text/javascript']
+
+@app.after_request
+def add_header(response):
+    # Cache static assets
+    if 'Cache-Control' not in response.headers:
+        response.headers['Cache-Control'] = 'public, max-age=3600'
+    return response
 
 @app.route('/')
 def index():
