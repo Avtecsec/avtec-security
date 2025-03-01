@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Avtec Security</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="menu-icon" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    
+    <nav class="nav-menu" id="navMenu">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('services') }}">Services</a></li>
+            <li><a href="{{ url_for('products') }}">Products</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Security Products</h1>
+            <p>State-of-the-art security equipment for your peace of mind</p>
+        </div>
+    </section>
+
+    <section class="products-grid animate-on-scroll">
+        <div class="container">
+            <div class="product-category">
+                <h2>Surveillance Systems</h2>
+                <div class="product-list">
+                    <div class="product-card">
+                        <i class="fas fa-video"></i>
+                        <h3>HD Security Cameras</h3>
+                        <p>4K resolution with night vision capabilities</p>
+                        <ul>
+                            <li>Wide-angle lens</li>
+                            <li>Motion detection</li>
+                            <li>Weather-resistant</li>
+                        </ul>
+                        <a href="{{ url_for('contact') }}" class="cta-button">Inquire Now</a>
+                    </div>
+
+                    <div class="product-card">
+                        <i class="fas fa-desktop"></i>
+                        <h3>NVR Systems</h3>
+                        <p>Advanced recording and storage solutions</p>
+                        <ul>
+                            <li>Multi-channel support</li>
+                            <li>Cloud backup</li>
+                            <li>Remote access</li>
+                        </ul>
+                        <a href="{{ url_for('contact') }}" class="cta-button">Inquire Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-category">
+                <h2>Access Control</h2>
+                <div class="product-list">
+                    <div class="product-card">
+                        <i class="fas fa-fingerprint"></i>
+                        <h3>Biometric Readers</h3>
+                        <p>Advanced fingerprint and facial recognition</p>
+                        <ul>
+                            <li>Multi-factor authentication</li>
+                            <li>Time attendance</li>
+                            <li>Anti-spoofing technology</li>
+                        </ul>
+                        <a href="{{ url_for('contact') }}" class="cta-button">Inquire Now</a>
+                    </div>
+
+                    <div class="product-card">
+                        <i class="fas fa-key"></i>
+                        <h3>Smart Locks</h3>
+                        <p>Keyless entry solutions for homes and businesses</p>
+                        <ul>
+                            <li>Mobile app control</li>
+                            <li>Guest access</li>
+                            <li>Activity logs</li>
+                        </ul>
+                        <a href="{{ url_for('contact') }}" class="cta-button">Inquire Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-category">
+                <h2>Alarm Systems</h2>
+                <div class="product-list">
+                    <div class="product-card">
+                        <i class="fas fa-bell"></i>
+                        <h3>Intrusion Detection</h3>
+                        <p>Complete perimeter protection systems</p>
+                        <ul>
+                            <li>Motion sensors</li>
+                            <li>Door/window contacts</li>
+                            <li>Glass break detectors</li>
+                        </ul>
+                        <a href="{{ url_for('contact') }}" class="cta-button">Inquire Now</a>
+                    </div>
+
+                    <div class="product-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Smart Monitoring</h3>
+                        <p>24/7 connected security monitoring</p>
+                        <ul>
+                            <li>Mobile notifications</li>
+                            <li>Emergency response</li>
+                            <li>Remote arming/disarming</li>
+                        </ul>
+                        <a href="{{ url_for('contact') }}" class="cta-button">Inquire Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

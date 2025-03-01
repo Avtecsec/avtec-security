@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Avtec Security</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="menu-icon" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    
+    <nav class="nav-menu" id="navMenu">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('services') }}">Services</a></li>
+            <li><a href="{{ url_for('products') }}">Products</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Our Story</h1>
+            <p>Leading the way in security innovation since 1995</p>
+        </div>
+    </section>
+
+    <section class="about-content animate-on-scroll">
+        <div class="container">
+            <div class="mission-statement">
+                <h2>Our Mission</h2>
+                <p>At Avtec Security, we're dedicated to providing cutting-edge security solutions that protect what matters most to our clients. With over 25 years of experience, we've established ourselves as industry leaders in both residential and commercial security.</p>
+            </div>
+
+            <div class="values-grid">
+                <div class="value-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Trust</h3>
+                    <p>Building lasting relationships through reliability and integrity.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-medal"></i>
+                    <h3>Excellence</h3>
+                    <p>Delivering superior solutions and exceptional service.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Innovation</h3>
+                    <p>Staying ahead with the latest security technology.</p>
+                </div>
+            </div>
+
+            <div class="team-section">
+                <h2>Leadership Team</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <i class="fas fa-user-circle"></i>
+                        <h3>John Smith</h3>
+                        <p>CEO & Founder</p>
+                    </div>
+                    <div class="team-member">
+                        <i class="fas fa-user-circle"></i>
+                        <h3>Sarah Johnson</h3>
+                        <p>Technical Director</p>
+                    </div>
+                    <div class="team-member">
+                        <i class="fas fa-user-circle"></i>
+                        <h3>Mike Williams</h3>
+                        <p>Operations Manager</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="certifications">
+                <h2>Our Certifications</h2>
+                <div class="cert-grid">
+                    <div class="cert-item">
+                        <i class="fas fa-certificate"></i>
+                        <p>ISO 9001:2015</p>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fas fa-award"></i>
+                        <p>Security Industry Authority</p>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <p>NSI Gold Certified</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

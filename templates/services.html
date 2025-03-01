@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Avtec Security</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="menu-icon" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    
+    <nav class="nav-menu" id="navMenu">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('services') }}">Services</a></li>
+            <li><a href="{{ url_for('products') }}">Products</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Our Services</h1>
+            <p>Comprehensive security solutions tailored to your needs</p>
+        </div>
+    </section>
+
+    <section class="services-grid animate-on-scroll">
+        <div class="container">
+            <div class="service-card">
+                <i class="fas fa-home"></i>
+                <h3>Residential Security</h3>
+                <ul>
+                    <li>Burglar Alarm Systems</li>
+                    <li>Video Surveillance</li>
+                    <li>Smart Home Integration</li>
+                    <li>Access Control</li>
+                </ul>
+                <a href="{{ url_for('contact') }}" class="cta-button">Learn More</a>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-building"></i>
+                <h3>Commercial Security</h3>
+                <ul>
+                    <li>Enterprise Security Systems</li>
+                    <li>Access Management</li>
+                    <li>CCTV Monitoring</li>
+                    <li>Visitor Management</li>
+                </ul>
+                <a href="{{ url_for('contact') }}" class="cta-button">Learn More</a>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-video"></i>
+                <h3>CCTV Systems</h3>
+                <ul>
+                    <li>HD Camera Installation</li>
+                    <li>24/7 Monitoring</li>
+                    <li>Remote Viewing</li>
+                    <li>Video Analytics</li>
+                </ul>
+                <a href="{{ url_for('contact') }}" class="cta-button">Learn More</a>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-door-closed"></i>
+                <h3>Access Control</h3>
+                <ul>
+                    <li>Keycard Systems</li>
+                    <li>Biometric Access</li>
+                    <li>Visitor Management</li>
+                    <li>Time Attendance</li>
+                </ul>
+                <a href="{{ url_for('contact') }}" class="cta-button">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="process-section animate-on-scroll">
+        <div class="container">
+            <h2>Our Process</h2>
+            <div class="process-steps">
+                <div class="step">
+                    <i class="fas fa-comments"></i>
+                    <h3>Consultation</h3>
+                    <p>Initial meeting to understand your security needs</p>
+                </div>
+                <div class="step">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h3>Assessment</h3>
+                    <p>Thorough evaluation of your property</p>
+                </div>
+                <div class="step">
+                    <i class="fas fa-tools"></i>
+                    <h3>Installation</h3>
+                    <p>Professional setup by certified technicians</p>
+                </div>
+                <div class="step">
+                    <i class="fas fa-headset"></i>
+                    <h3>Support</h3>
+                    <p>24/7 monitoring and maintenance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
