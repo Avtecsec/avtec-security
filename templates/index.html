@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avtec Security - Protecting What Matters</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="menu-icon" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <nav class="nav-menu" id="navMenu">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('services') }}">Services</a></li>
+            <li><a href="{{ url_for('products') }}">Products</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="logo">
+                <img src="https://www.dropbox.com/scl/fi/avegbm7algpn04hni7cvt/Avtec_Security_Logo_Transparent.png?rlkey=qpjk6iu834tpydj39n7oye8yw&raw=1" alt="Avtec Security Logo">
+            </div>
+            <h1>Protecting What Matters Most</h1>
+            <p>Leading security solutions for homes and businesses. Reliable. Professional. Trusted.</p>
+            <a href="{{ url_for('contact') }}" class="cta-button">Get a Free Quote</a>
+        </div>
+    </section>
+
+
+
+    <section class="services animate-on-scroll">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Home Security</h3>
+                    <p>Comprehensive home security solutions tailored to your needs. Protect your family and property with state-of-the-art systems.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-building"></i>
+                    <h3>Business Security</h3>
+                    <p>Advanced security systems for commercial properties. Safeguard your assets, employees, and customers with our professional solutions.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-video"></i>
+                    <h3>CCTV Systems</h3>
+                    <p>24/7 surveillance solutions with remote monitoring. Keep an eye on your property from anywhere in the world.</p>
+                </div>
+            </div>
+            <div class="text-center" style="margin-top: 40px;">
+                <a href="{{ url_for('services') }}" class="cta-button">View All Services</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials animate-on-scroll">
+        <div class="container">
+            <h2>What Our Clients Say</h2>
+            <div class="testimonial-card">
+                <p>"Avtec Security provided us with an excellent security system. Their team was professional, efficient, and the quality of their work was outstanding. I feel so much safer knowing our business is protected by their advanced systems."</p>
+                <cite>- Jon Murdock, Business Owner</cite>
+            </div>
+        </div>
+    </section>
+
+    <div class="floating-contact">
+        <a href="{{ url_for('contact') }}" class="float-btn">
+            <i class="fas fa-envelope"></i>
+        </a>
+        <div class="float-label">Contact Us</div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
