@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Avtec Security - Professional security solutions for homes and businesses in Bristol. Expert installation of CCTV, access control, and alarm systems.">
+    <meta name="keywords" content="security systems, CCTV installation, access control, alarm systems, Bristol security, commercial security, residential security">
+    <meta name="author" content="Avtec Security">
+    <meta property="og:title" content="Avtec Security - Professional Security Solutions">
+    <meta property="og:description" content="Professional security solutions for homes and businesses in Bristol. Expert installation of CCTV, access control, and alarm systems.">
+    <meta property="og:type" content="website">
+    <title>Avtec Security - Professional Security Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* Mobile-first approach */
+        :root {
+            --bg-primary: #1a1a1a;
+            --bg-gradient: linear-gradient(to right, #000000, #1a1a1a);
+            --text-primary: #fff;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --accent-color: #E10600;
+            --nav-bg: rgba(0, 0, 0, 0.95);
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg-primary: #f5f5f5;
+                --bg-gradient: linear-gradient(to right, #ffffff, #f5f5f5);
+                --text-primary: #000;
+                --text-secondary: rgba(0, 0, 0, 0.7);
+                --accent-color: #E10600;
+                --nav-bg: rgba(255, 255, 255, 0.95);
+                --card-bg: rgba(0, 0, 0, 0.05);
+                --border-color: rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        /* Mobile-first base styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            text-align: center;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Enhanced mobile menu styles */
+        .menu-icon {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 8px;
+            background: none;
+            border: none;
+        }
+
+        .menu-icon span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: var(--text-primary);
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .menu-icon.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .menu-icon.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-icon.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            padding: 70px 0 40px;
+            transition: top 0.4s ease-in-out;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-menu.nav-active {
+            top: 0;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        .nav-menu ul li {
+            padding: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-menu ul li a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: block;
+            transition: color 0.3s ease;
+            padding: 8px;
+        }
+
+        /* Loading and transitions */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-gradient);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .page-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--text-secondary);
+            border-radius: 50%;
+            border-top-color: var(--accent-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+        .loader-message {
+            margin-top: 20px;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+        }
+
+        .error-message {
+            color: var(--accent-color);
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Content container responsiveness */
+        .page-content {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        @media (min-width: 1200px) {
+            .page-content {
+                max-width: 1200px;
+            }
+        }
+
+        /* Improved accessibility */
+        a:focus, button:focus {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-loader">
+        <div class="loader"></div>
+        <div class="loader-message">Loading...</div>
+        <div class="error-message"></div>
+    </div>
+
+    <button class="menu-icon" onclick="toggleMenu(this)" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <nav class="nav-menu" id="navMenu" role="navigation" aria-label="Main navigation">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/products">Products</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main class="page-content" role="main">
+        
+<style>
+    .hero-section {
+        height: 100vh;
+        min-height: 600px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        padding: 20px;
+        width: 100%;
+        margin-bottom: 60px;
+    }
+
+    .hero-video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        transform: translate(-50%, -50%);
+        object-fit: cover;
+        z-index: 0;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        animation: slowmotion 20s infinite linear;
+    }
+
+    @keyframes slowmotion {
+        0% {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        100% {
+            transform: translate(-50%, -50%) scale(1);
+        }
+    }
+
+    .hero-video.loaded {
+        opacity: 1;
+    }
+
+    .background-effect {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(26,26,26,0.85) 100%);
+        z-index: 1;
+    }
+
+    .content-wrapper {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        max-width: 1200px;
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .logo-container {
+        margin-bottom: 40px;
+        animation: fadeInDown 1.5s ease forwards;
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto 40px;
+    }
+
+    .logo-container img {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+    }
+
+    .hero-text {
+        margin-bottom: 40px;
+        animation: fadeIn 1.5s ease forwards 0.5s;
+        opacity: 0;
+    }
+
+    .hero-text p {
+        font-size: clamp(1.1rem, 2vw, 1.6rem);
+        line-height: 1.6;
+        color: var(--text-secondary);
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .cta-section {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 40px;
+        animation: fadeIn 1.5s ease forwards 1s;
+        opacity: 0;
+        flex-wrap: wrap;
+        padding: 0 20px;
+    }
+
+    .cta-button {
+        padding: clamp(15px, 2vw, 18px) clamp(25px, 3vw, 36px);
+        font-size: clamp(1rem, 1.5vw, 1.2rem);
+        text-decoration: none;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        min-width: 200px;
+        text-align: center;
+    }
+
+    .primary-cta {
+        background: linear-gradient(45deg, var(--accent-color), #cc0000);
+        color: #fff;
+        box-shadow: 0px 4px 15px rgba(225, 6, 0, 0.3);
+    }
+
+    .secondary-cta {
+        background: transparent;
+        color: var(--text-primary);
+        border: 2px solid var(--text-primary);
+    }
+
+    .primary-cta:hover {
+        transform: translateY(-3px);
+        box-shadow: 0px 6px 20px rgba(225, 6, 0, 0.4);
+    }
+
+    .secondary-cta:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-3px);
+    }
+
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin-top: 60px;
+        padding: 0 20px;
+        max-width: 1200px;
+        margin: 60px auto 0;
+        animation: fadeIn 1.5s ease forwards 1.5s;
+        opacity: 0;
+    }
+
+    .feature-card {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-10px);
+    }
+
+    .feature-card i {
+        font-size: clamp(2rem, 3vw, 2.5rem);
+        color: var(--accent-color);
+        margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+        font-size: clamp(1.2rem, 2vw, 1.4rem);
+        margin-bottom: 15px;
+        color: var(--text-primary);
+    }
+
+    .feature-card p {
+        font-size: clamp(0.9rem, 1.5vw, 1rem);
+        color: var(--text-secondary);
+        line-height: 1.6;
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .hero-section {
+            min-height: 500px;
+        }
+
+        .cta-section {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .cta-button {
+            width: 100%;
+        }
+
+        .feature-grid {
+            grid-template-columns: 1fr;
+            margin-top: 40px;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+        }
+    }
+</style>
+
+<main>
+    <section class="hero-section">
+        <video id="heroVideo" class="hero-video" autoplay loop muted playsinline preload="metadata">
+            <source src="/static/videos/20250301_2134_Advanced Security Surveillance_simple_compose_01jn9t366qfjktx5cbr8egye91.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="background-effect"></div>
+        <div class="content-wrapper">
+            <div class="logo-container">
+                <img src="https://www.dropbox.com/scl/fi/avegbm7algpn04hni7cvt/Avtec_Security_Logo_Transparent.png?rlkey=qpjk6iu834tpydj39n7oye8yw&raw=1" alt="Avtec Security Logo">
+            </div>
+            <div class="hero-text">
+                <p>Leading security solutions for homes and businesses across Bristol. With over 24 years of experience, we deliver reliable, professional, and trusted security systems.</p>
+            </div>
+            <div class="cta-section">
+                <a href="/contact" class="cta-button primary-cta">Get a Free Quote</a>
+                <a href="/services" class="cta-button secondary-cta">Our Services</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="feature-grid">
+        <div class="feature-card">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Expert Protection</h3>
+            <p>State-of-the-art security systems tailored to your needs</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-clock"></i>
+            <h3>24+ Years Experience</h3>
+            <p>Decades of trusted service in the security industry</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-map-marker-alt"></i>
+            <h3>Local Service</h3>
+            <p>Bristol-based team providing rapid response times</p>
+        </div>
+    </section>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('heroVideo');
+
+    // Function to set video speed
+    function setHalfSpeed() {
+        video.playbackRate = 0.5;
+    }
+
+    // Load video metadata first
+    video.addEventListener('loadedmetadata', function() {
+        // Once metadata is loaded, show the video
+        this.classList.add('loaded');
+        setHalfSpeed();
+    });
+
+    // Start playing when in view
+    video.play().catch(function(error) {
+        console.log("Video autoplay failed:", error);
+    });
+});
+</script>
+
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loader = document.querySelector('.page-loader');
+
+            // Remove loader after content is loaded
+            if (loader) {
+                setTimeout(() => {
+                    loader.style.opacity = '0';
+                    setTimeout(() => {
+                        loader.remove();
+                    }, 500);
+                }, 1000);
+            }
+        });
+
+        function toggleMenu(icon) {
+            icon.classList.toggle('active');
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('nav-active');
+            icon.setAttribute('aria-expanded', navMenu.classList.contains('nav-active'));
+        }
+    </script>
+</body>
+</html>

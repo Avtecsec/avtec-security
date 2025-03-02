@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Avtec Security - Professional security solutions for homes and businesses in Bristol. Expert installation of CCTV, access control, and alarm systems.">
+    <meta name="keywords" content="security systems, CCTV installation, access control, alarm systems, Bristol security, commercial security, residential security">
+    <meta name="author" content="Avtec Security">
+    <meta property="og:title" content="Avtec Security - Professional Security Solutions">
+    <meta property="og:description" content="Professional security solutions for homes and businesses in Bristol. Expert installation of CCTV, access control, and alarm systems.">
+    <meta property="og:type" content="website">
+    <title>Services - Avtec Security</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* Mobile-first approach */
+        :root {
+            --bg-primary: #1a1a1a;
+            --bg-gradient: linear-gradient(to right, #000000, #1a1a1a);
+            --text-primary: #fff;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --accent-color: #E10600;
+            --nav-bg: rgba(0, 0, 0, 0.95);
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg-primary: #f5f5f5;
+                --bg-gradient: linear-gradient(to right, #ffffff, #f5f5f5);
+                --text-primary: #000;
+                --text-secondary: rgba(0, 0, 0, 0.7);
+                --accent-color: #E10600;
+                --nav-bg: rgba(255, 255, 255, 0.95);
+                --card-bg: rgba(0, 0, 0, 0.05);
+                --border-color: rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        /* Mobile-first base styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            text-align: center;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Enhanced mobile menu styles */
+        .menu-icon {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 8px;
+            background: none;
+            border: none;
+        }
+
+        .menu-icon span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: var(--text-primary);
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .menu-icon.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .menu-icon.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-icon.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            padding: 70px 0 40px;
+            transition: top 0.4s ease-in-out;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-menu.nav-active {
+            top: 0;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        .nav-menu ul li {
+            padding: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-menu ul li a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: block;
+            transition: color 0.3s ease;
+            padding: 8px;
+        }
+
+        /* Loading and transitions */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-gradient);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .page-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--text-secondary);
+            border-radius: 50%;
+            border-top-color: var(--accent-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+        .loader-message {
+            margin-top: 20px;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+        }
+
+        .error-message {
+            color: var(--accent-color);
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Content container responsiveness */
+        .page-content {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        @media (min-width: 1200px) {
+            .page-content {
+                max-width: 1200px;
+            }
+        }
+
+        /* Improved accessibility */
+        a:focus, button:focus {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-loader">
+        <div class="loader"></div>
+        <div class="loader-message">Loading...</div>
+        <div class="error-message"></div>
+    </div>
+
+    <button class="menu-icon" onclick="toggleMenu(this)" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <nav class="nav-menu" id="navMenu" role="navigation" aria-label="Main navigation">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/products">Products</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main class="page-content" role="main">
+        
+<style>
+    .hero {
+        position: relative;
+        width: 100%;
+        height: 40vh;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 60px;
+    }
+
+    .hero-video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        transform: translate(-50%, -50%);
+        object-fit: cover;
+        z-index: 0;
+    }
+
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 1;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: #fff;
+        padding: 0 20px;
+        animation: fadeIn 1s ease forwards;
+        opacity: 0;
+    }
+
+    .hero-content h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+    }
+
+    .hero-content p {
+        font-size: 1.5rem;
+        opacity: 0.9;
+    }
+
+    .services-grid {
+        padding: 40px 0;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .service-card {
+        background: var(--card-bg);
+        padding: 30px;
+        border-radius: 15px;
+        margin-bottom: 30px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        animation: fadeIn 1s ease forwards;
+        opacity: 0;
+    }
+
+    .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(225, 6, 0, 0.2);
+    }
+
+    .service-card i {
+        font-size: 2.5rem;
+        color: var(--accent-color);
+        margin-bottom: 20px;
+    }
+
+    .service-card h3 {
+        font-size: 1.8rem;
+        color: var(--text-primary);
+        margin-bottom: 15px;
+    }
+
+    .service-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 20px;
+        color: var(--text-secondary);
+    }
+
+    .service-card ul li {
+        margin: 10px 0;
+        font-size: 1.1rem;
+    }
+
+    .cta-button {
+        display: inline-block;
+        background: var(--accent-color);
+        color: #fff;
+        padding: 12px 25px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-size: 1.1rem;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .cta-button:hover {
+        transform: translateY(-3px);
+        background: #cc0000;
+    }
+
+    .process-section {
+        padding: 60px 0;
+        background: var(--card-bg);
+        margin-top: 60px;
+    }
+
+    .process-section h2 {
+        font-size: 2.5rem;
+        color: var(--accent-color);
+        margin-bottom: 40px;
+        text-transform: uppercase;
+        animation: fadeIn 1s ease forwards;
+        opacity: 0;
+    }
+
+    .process-steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+    }
+
+    .step {
+        text-align: center;
+        animation: fadeIn 1s ease forwards;
+        opacity: 0;
+    }
+
+    .step i {
+        font-size: 2.5rem;
+        color: var(--accent-color);
+        margin-bottom: 20px;
+    }
+
+    .step h3 {
+        font-size: 1.5rem;
+        color: var(--text-primary);
+        margin-bottom: 10px;
+    }
+
+    .step p {
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    @media (min-width: 768px) {
+        .services-grid .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<section class="hero">
+    <video class="hero-video" autoplay loop muted playsinline preload="metadata">
+        <source src="/static/videos/20250301_2127_Dynamic Digital Defense_simple_compose_01jn9sph2qfa3t0cdk24jxmpbh.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="hero-content">
+        <h1>Our Services</h1>
+        <p>Comprehensive security solutions tailored to your needs</p>
+    </div>
+</section>
+
+<section class="services-grid">
+    <div class="container">
+        <div class="service-card">
+            <i class="fas fa-home"></i>
+            <h3>Residential Security</h3>
+            <ul>
+                <li>Burglar Alarm Systems</li>
+                <li>Video Surveillance</li>
+                <li>Smart Home Integration</li>
+                <li>Access Control</li>
+            </ul>
+            <a href="avtec-security/contact.html" class="cta-button">Learn More</a>
+        </div>
+
+        <div class="service-card">
+            <i class="fas fa-building"></i>
+            <h3>Commercial Security</h3>
+            <ul>
+                <li>Security Systems</li>
+                <li>Access Management</li>
+                <li>CCTV Monitoring</li>
+                <li>Intercom Systems</li>
+            </ul>
+            <a href="avtec-security/contact.html" class="cta-button">Learn More</a>
+        </div>
+
+        <div class="service-card">
+            <i class="fas fa-video"></i>
+            <h3>CCTV Systems</h3>
+            <ul>
+                <li>HD Camera Installation</li>
+                <li>24/7 Monitoring</li>
+                <li>Remote Viewing</li>
+                <li>Video Analytics</li>
+            </ul>
+            <a href="avtec-security/contact.html" class="cta-button">Learn More</a>
+        </div>
+
+        <div class="service-card">
+            <i class="fas fa-door-closed"></i>
+            <h3>Access Control</h3>
+            <ul>
+                <li>Keycard Systems</li>
+                <li>Time Attendance</li>
+                <li>Visitor Management</li>
+            </ul>
+            <a href="avtec-security/contact.html" class="cta-button">Learn More</a>
+        </div>
+
+        <div class="service-card">
+            <i class="fas fa-hard-hat"></i>
+            <h3>Subcontract Labour</h3>
+            <ul>
+                <li>Certified Security Professionals</li>
+                <li>Temporary Staffing Solutions</li>
+                <li>Project-Based Workforce</li>
+                <li>Expert Installation Teams</li>
+            </ul>
+            <a href="avtec-security/contact.html" class="cta-button">Learn More</a>
+        </div>
+    </div>
+</section>
+
+<section class="process-section">
+    <div class="container">
+        <h2>Our Process</h2>
+        <div class="process-steps">
+            <div class="step">
+                <i class="fas fa-comments"></i>
+                <h3>Consultation</h3>
+                <p>Initial meeting to understand your security needs</p>
+            </div>
+            <div class="step">
+                <i class="fas fa-clipboard-list"></i>
+                <h3>Assessment</h3>
+                <p>Thorough evaluation of your property</p>
+            </div>
+            <div class="step">
+                <i class="fas fa-tools"></i>
+                <h3>Installation</h3>
+                <p>Professional setup by certified technicians</p>
+            </div>
+            <div class="step">
+                <i class="fas fa-headset"></i>
+                <h3>Support</h3>
+                <p>Ongoing maintenance and support</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.querySelector('.hero-video');
+
+    video.addEventListener('loadedmetadata', function() {
+        video.classList.add('loaded');
+    });
+
+    video.addEventListener('error', function(e) {
+        console.error('Error loading video:', e);
+        document.querySelector('.hero').style.background = 'linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(26,26,26,0.95) 100%)';
+    });
+});
+</script>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loader = document.querySelector('.page-loader');
+
+            // Remove loader after content is loaded
+            if (loader) {
+                setTimeout(() => {
+                    loader.style.opacity = '0';
+                    setTimeout(() => {
+                        loader.remove();
+                    }, 500);
+                }, 1000);
+            }
+        });
+
+        function toggleMenu(icon) {
+            icon.classList.toggle('active');
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('nav-active');
+            icon.setAttribute('aria-expanded', navMenu.classList.contains('nav-active'));
+        }
+    </script>
+</body>
+</html>
