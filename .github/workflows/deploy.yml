@@ -24,8 +24,21 @@ jobs:
           python -m pip install --upgrade pip
           pip install flask flask-frozen flask-compress gunicorn
 
+      - name: Create static directory
+        run: mkdir -p static/videos
+
+      - name: Copy video files
+        run: |
+          cp attached_assets/*mp4 static/videos/
+          ls -la static/videos/
+
       - name: Build static site
         run: python build.py
+
+      - name: Configure Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
@@ -33,6 +46,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
           force_orphan: true
+          enable_jekyll: false
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
           commit_message: 'Deploy to GitHub Pages'
