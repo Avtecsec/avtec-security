@@ -4,7 +4,7 @@ from flask_frozen import Freezer
 from app import app
 
 # Configure Frozen-Flask
-app.config['FREEZER_BASE_URL'] = 'https://craigavtec.github.io/avtec-security/'
+app.config['FREEZER_BASE_URL'] = 'https://avtecsec.github.io/avtec-security/'
 app.config['FREEZER_DESTINATION'] = 'build'
 app.config['FREEZER_RELATIVE_URLS'] = True
 freezer = Freezer(app)
